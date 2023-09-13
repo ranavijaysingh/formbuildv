@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 
 export default function CheckboxComp() {
   const [question, setQuestion] = useState('');
-  const [cbNo, setCbNo] = useState(0);
-  const [checkData, setCheckData] = useState([{id:'1',value:'yo'}])
-  const [items, setItems] = useState([])
   const [inputValues, setInputValues] = useState(['']);
 
   const handleInputChange = (index, value) => {
@@ -30,10 +27,6 @@ export default function CheckboxComp() {
         value={question} 
         onChange={(e) => setQuestion(e.target.value)}
         required
-      />
-      <input placeholder='No. of checkbox'
-        value={cbNo}
-        onChange={(e) => setCbNo(e.target.value)}
       />
       <div>
         {inputValues.map((value, index) => (
