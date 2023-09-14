@@ -23,7 +23,7 @@ export default function CheckboxComp() {
   };
 
   return (
-    <div>
+    <div className='topShort'>
       <input 
         placeholder='Question' 
         value={question} 

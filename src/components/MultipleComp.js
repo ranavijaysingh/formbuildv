@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Multiple from '../styles/Multiple.css';
+import '../styles/Multiple.css';
 
 export default function MultipleComp() {
   const [question, setQuestion] = useState('');
@@ -23,7 +23,7 @@ export default function MultipleComp() {
   };
 
   return (
-    <div>
+    <div className='topShort'>
       <input 
         placeholder='Question' 
         value={question} 

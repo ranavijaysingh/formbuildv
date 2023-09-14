@@ -4,7 +4,7 @@ import LongComp from './LongComp';
 import MultipleComp from './MultipleComp';
 import CheckboxComp from './CheckboxComp';
 import Dropdown from './DropdownComp';
-
+import '../styles/FormStyle.css';
 export default function Formbuilder() {
 
     const [nofield, setNofield] = useState(0);
@@ -38,7 +38,7 @@ export default function Formbuilder() {
     }
 
   return (
-    <div>
+    <div className='container'>
         <select onChange={onSelect}>
             <option></option>
             <option>Short answer</option>
