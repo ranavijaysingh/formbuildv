@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Checkbox from '../styles/Checkbox.css';
 
 export default function CheckboxComp() {
   const [question, setQuestion] = useState('');
@@ -13,12 +14,11 @@ export default function CheckboxComp() {
   const addInput = (event) => {
     event.preventDefault();
     setInputValues([...inputValues, '']);
-     // Add an empty input value
   };
 
   const removeInput = (index) => {
     const updatedValues = [...inputValues];
-    updatedValues.splice(index, 1); // Remove the input at the given index
+    updatedValues.splice(index, 1);
     setInputValues(updatedValues);
   };
 
@@ -32,17 +32,18 @@ export default function CheckboxComp() {
       />
       <div>
         {inputValues.map((value, index) => (
-          <div key={index}>
+          <div key={index} className="inputContainer">
+            <span class="smallBox"></span>
             <input
               type="text"
               value={value}
               onChange={(e) => handleInputChange(index, e.target.value)}
+              className="inputField"
             />
             <button onClick={() => removeInput(index)}>Remove</button>
           </div>
         ))}
-        <button onClick={addInput}>Add Input</button>
-        
+        <button onClick={addInput}>Add Input</button>    
       </div>
     </div>
   )
