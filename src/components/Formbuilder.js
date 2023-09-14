@@ -39,7 +39,7 @@ export default function Formbuilder() {
 
   return (
     <div className='container'>
-        <select onChange={onSelect}>
+        <select onChange={onSelect} className='selectBox'>
             <option></option>
             <option>Short answer</option>
             <option>Long answer</option>
