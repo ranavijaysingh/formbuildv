@@ -10,8 +10,10 @@ export default function CheckboxComp() {
     setInputValues(updatedValues);
   };
 
-  const addInput = () => {
-    setInputValues([...inputValues, '']); // Add an empty input value
+  const addInput = (event) => {
+    event.preventDefault();
+    setInputValues([...inputValues, '']);
+     // Add an empty input value
   };
 
   const removeInput = (index) => {
@@ -40,6 +42,7 @@ export default function CheckboxComp() {
           </div>
         ))}
         <button onClick={addInput}>Add Input</button>
+        
       </div>
     </div>
   )
