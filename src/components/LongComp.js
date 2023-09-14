@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Long from '../styles/Long.css';
+import '../styles/Long.css';
 
 export default function LongComp() {
   const [question, setQuestion] = useState('')

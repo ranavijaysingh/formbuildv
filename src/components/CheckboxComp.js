@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Checkbox from '../styles/Checkbox.css';
+import '../styles/Checkbox.css';
 
 export default function CheckboxComp() {
   const [question, setQuestion] = useState('');
@@ -33,7 +33,7 @@ export default function CheckboxComp() {
       <div>
         {inputValues.map((value, index) => (
           <div key={index} className="inputContainer">
-            <span class="smallBox"></span>
+            <span className="smallBox"></span>
             <input
               type="text"
               value={value}
