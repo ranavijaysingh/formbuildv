@@ -1,0 +1,16 @@
+.inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .smallBox {
+    border: 2px solid grey;
+    width: 10px; 
+    height: 10px; 
+    margin-right: 10px; 
+  }
+  .inputField {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
