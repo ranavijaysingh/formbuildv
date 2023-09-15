@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Multiple from '../styles/Multiple.css';
+import '../styles/Multiple.css';
 
 export default function MultipleComp() {
   const [question, setQuestion] = useState('');
@@ -16,14 +16,15 @@ export default function MultipleComp() {
     setInputValues([...inputValues, '']);
   };
 
-  const removeInput = (index) => {
+  const removeInput = (event, index) => {
+    event.preventDefault();
     const updatedValues = [...inputValues];
     updatedValues.splice(index, 1);
     setInputValues(updatedValues);
   };
 
   return (
-    <div>
+    <div className='topShort'>
       <input 
         placeholder='Question' 
         value={question} 
@@ -40,7 +41,7 @@ export default function MultipleComp() {
               onChange={(e) => handleInputChange(index, e.target.value)}
               className="inputField"
             />
-            <button onClick={() => removeInput(index)}>Remove</button>
+            <button onClick={(event) => removeInput(event, index)}>Remove</button>
           </div>
         ))}
         <button onClick={addInput}>Add Input</button>    

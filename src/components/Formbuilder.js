@@ -4,16 +4,15 @@ import LongComp from './LongComp';
 import MultipleComp from './MultipleComp';
 import CheckboxComp from './CheckboxComp';
 import Dropdown from './DropdownComp';
-
+import '../styles/FormStyle.css';
 export default function Formbuilder() {
 
     const [nofield, setNofield] = useState(0);
-    let [comp, setComp] = useState([]); //array of all component
+    let [comp, setComp] = useState([]); 
     
 
-    const renderComp = (component) => {
+    const renderComp = (component, index) => {
         switch(component.type){
-
             case 'Short answer':
                 return <ShortComp/>    
             case 'Long answer':
@@ -23,24 +22,33 @@ export default function Formbuilder() {
             case 'Checkbox':
                 return <CheckboxComp/>
             case 'Dropdown':
-                return <Dropdown />
+                return <Dropdown/>
             default:
-                return <ShortComp />
-                
+                return null   
         }
 
     }
 
     const onSelect = (el) => {
-        setComp([...comp, {nofield:nofield+1, type:el.target.value}])
+        const selectedType = el.target.value;
+        setComp([...comp, {nofield:nofield, type:selectedType}])
         setNofield(nofield+1)
+        el.target.value=""
+    }
+
+    const removeComp = (event,index) => {
+        event.preventDefault();
+        console.log(index)
+        const updatedComp = [...comp];
+        updatedComp.splice(index,1);
+        setComp(updatedComp);
         console.log(comp)
     }
 
-
   return (
-    <div>
-        <select onChange={onSelect}>
+    <div className='container'>
+        <select onChange={onSelect} className='selectBox'>
+            <option></option>
             <option>Short answer</option>
             <option>Long answer</option>
             <option>Checkbox</option>
@@ -48,11 +56,13 @@ export default function Formbuilder() {
             <option>Dropdown</option>
         </select>
         <form>
-            {comp.map((component) => {
-                return( <div key={component.nofield}>
+            {comp.map((component, index) => {
+                // earlier instead of using index, I was using key={component.nofield}
+                 return (<div key={index}>
                     {renderComp(component)}
-                </div>
-                )
+                    <button onClick={(event) =>removeComp(event, index)}>Remove</button>
+                    {/* context se global state manage karlo useReducer -> stateManage */}
+                </div>) 
             })}
         </form>
     </div>
