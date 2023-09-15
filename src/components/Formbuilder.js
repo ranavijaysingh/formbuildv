@@ -13,7 +13,6 @@ export default function Formbuilder() {
 
     const renderComp = (component, index) => {
         switch(component.type){
-
             case 'Short answer':
                 return <ShortComp/>    
             case 'Long answer':
@@ -37,6 +36,15 @@ export default function Formbuilder() {
         el.target.value=""
     }
 
+    const removeComp = (event,index) => {
+        event.preventDefault();
+        console.log(index)
+        const updatedComp = [...comp];
+        updatedComp.splice(index,1);
+        setComp(updatedComp);
+        console.log(comp)
+    }
+
   return (
     <div className='container'>
         <select onChange={onSelect} className='selectBox'>
@@ -48,11 +56,13 @@ export default function Formbuilder() {
             <option>Dropdown</option>
         </select>
         <form>
-            {comp.map((component) => {
-                 return (<div key={component.nofield}>
+            {comp.map((component, index) => {
+                // earlier instead of using index, I was using key={component.nofield}
+                 return (<div key={index}>
                     {renderComp(component)}
-                </div>)
-                
+                    <button onClick={(event) =>removeComp(event, index)}>Remove</button>
+                    {/* context se global state manage karlo useReducer -> stateManage */}
+                </div>) 
             })}
         </form>
     </div>
