@@ -10,15 +10,14 @@ export default function Formbuilder() {
     const [nofield, setNofield] = useState(0);
     const [comp, setComp] = useState([]); 
     const [formData, setFormData] = useState({});
-    const [content, setContent] = useState([]);    
 
     
     const renderComp = (component, index) => {
         switch(component.type){
             case 'Short answer':
-                return <ShortComp setContent={setContent} content={content} index={index}/>    
+                return <ShortComp comp={comp} setComp={setComp} nofield={index}/>    
             case 'Long answer':
-                return <LongComp setContent={setContent}/>
+                return <LongComp />
             case 'Multiple choice':
                 return <MultipleComp/>
             case 'Checkbox':
@@ -40,11 +39,9 @@ export default function Formbuilder() {
 
     const removeComp = (event,index) => {
         event.preventDefault();
-        console.log(index)
         const updatedComp = [...comp];
         updatedComp.splice(index,1);
         setComp(updatedComp);
-        console.log(comp)
     }
 
     const handleFormSubmit = (event) =>{
@@ -52,7 +49,7 @@ export default function Formbuilder() {
         let generateData = {};
         comp.forEach((compData) =>{
 
-            generateData[compData.nofield] = { ...compData, ...content[index]}
+            generateData[compData.nofield] = { ...compData}
         })
         setFormData(generateData);
     }
@@ -71,7 +68,7 @@ export default function Formbuilder() {
             {comp.map((component, index) => {
                 // earlier instead of using index, I was using key={component.nofield}
                  return (<div key={index}>
-                    {renderComp(component)}
+                    {renderComp(component, index)}
                     <button onClick={(event) =>removeComp(event, index)}>Remove</button>
                     {/* context se global state manage karlo useReducer -> stateManage */}
                 </div>) 
