@@ -8,7 +8,8 @@ import '../styles/FormStyle.css';
 export default function Formbuilder() {
 
     const [nofield, setNofield] = useState(0);
-    let [comp, setComp] = useState([]); 
+    const [comp, setComp] = useState([]); 
+    const [formData, setFormData] = useState({});
     
 
     const renderComp = (component, index) => {
@@ -45,6 +46,15 @@ export default function Formbuilder() {
         console.log(comp)
     }
 
+    const handleFormSubmit = (event) =>{
+        event.preventDefault();
+        let generateData = {};
+        comp.forEach((compData) =>{
+            generateData[compData.nofield] = compData
+        })
+        setFormData(generateData);
+    }
+
   return (
     <div className='container'>
         <select onChange={onSelect} className='selectBox'>
@@ -55,7 +65,7 @@ export default function Formbuilder() {
             <option>Multiple choice</option>
             <option>Dropdown</option>
         </select>
-        <form>
+        <form onSubmit={handleFormSubmit}>
             {comp.map((component, index) => {
                 // earlier instead of using index, I was using key={component.nofield}
                  return (<div key={index}>
@@ -64,7 +74,9 @@ export default function Formbuilder() {
                     {/* context se global state manage karlo useReducer -> stateManage */}
                 </div>) 
             })}
+            <button type="submit">Submit</button>
         </form>
+        <pre>{JSON.stringify(formData, null, 2)}</pre>
     </div>
   )
 }
