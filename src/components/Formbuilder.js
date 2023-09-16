@@ -10,14 +10,15 @@ export default function Formbuilder() {
     const [nofield, setNofield] = useState(0);
     const [comp, setComp] = useState([]); 
     const [formData, setFormData] = useState({});
-    
+    const [content, setContent] = useState([]);    
 
+    
     const renderComp = (component, index) => {
         switch(component.type){
             case 'Short answer':
-                return <ShortComp/>    
+                return <ShortComp setContent={setContent} content={content} index={index}/>    
             case 'Long answer':
-                return <LongComp/>
+                return <LongComp setContent={setContent}/>
             case 'Multiple choice':
                 return <MultipleComp/>
             case 'Checkbox':
@@ -50,7 +51,8 @@ export default function Formbuilder() {
         event.preventDefault();
         let generateData = {};
         comp.forEach((compData) =>{
-            generateData[compData.nofield] = compData
+
+            generateData[compData.nofield] = { ...compData, ...content[index]}
         })
         setFormData(generateData);
     }
