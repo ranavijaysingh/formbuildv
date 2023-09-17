@@ -11,8 +11,7 @@ export default function ShortComp({comp, setComp, nofield}) {
     let cp = comp
     let newcp={"question":question, "ans": ""}
     cp[nofield] = {...cp[nofield], ...newcp};
-    setComp(cp);
- 
+    setComp(cp); 
   },[question])
 
   return (

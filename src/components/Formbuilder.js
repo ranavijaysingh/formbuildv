@@ -75,8 +75,8 @@ export default function Formbuilder() {
             {renderComp(component)}
             <button onClick={(event) => removeComp(event, component.id)}>Remove</button>
           </div>
-         {/* context se global state manage karlo useReducer -> stateManage */}
-                // earlier instead of using index, I was using key={component.nofield}        
+          // context se global state manage karlo useReducer -> stateManage 
+          // earlier instead of using index, I was using key={component.nofield}        
         ))}
         <button type="submit">Submit</button>
       </form>
