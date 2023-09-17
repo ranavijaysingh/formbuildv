@@ -8,10 +8,11 @@ export default function ShortComp({comp, setComp, id}) {
   }
 
   useEffect(() =>{
-    let cp = comp
-    let newcp={"question":question, "ans": ""}
-    cp[id] = {...cp[id], ...newcp};
-    setComp(cp); 
+    const updatedComp = comp;
+    const componentToUpdate = updatedComp.find((component) => component.id === id)
+    componentToUpdate.question = question;
+    componentToUpdate.ans = "";
+    setComp(updatedComp);     
   },[question])
 
   return (

@@ -7,14 +7,13 @@ import Dropdown from './DropdownComp';
 import '../styles/FormStyle.css';
 export default function Formbuilder() {
 
-    const [comp, setComp] = useState([]); 
-    const [formData, setFormData] = useState({});
-  const renderComp = (component, id) => {
+  const [comp, setComp] = useState([]); 
+  const [formData, setFormData] = useState({});
+  const renderComp = (component, id) => { 
     switch (component.type) {
       case 'Short answer':
         return (
           <ShortComp
-            key={component.id} // Use a unique identifier (id) as the key
             comp={comp}
             setComp={setComp}
             id={id}
