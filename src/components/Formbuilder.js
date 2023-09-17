@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
 import ShortComp from './ShortComp';
 import LongComp from './LongComp';
 import MultipleComp from './MultipleComp';
@@ -10,38 +10,43 @@ export default function Formbuilder() {
     const [nofield, setNofield] = useState(0);
     const [comp, setComp] = useState([]); 
     const [formData, setFormData] = useState({});
-
-    
-    const renderComp = (component, index) => {
-        switch(component.type){
-            case 'Short answer':
-                return <ShortComp comp={comp} setComp={setComp} nofield={index}/>    
-            case 'Long answer':
-                return <LongComp />
-            case 'Multiple choice':
-                return <MultipleComp/>
-            case 'Checkbox':
-                return <CheckboxComp/>
-            case 'Dropdown':
-                return <Dropdown/>
-            default:
-                return null   
-        }
-
+  const renderComp = (component, index) => {
+    switch (component.type) {
+      case 'Short answer':
+        return (
+          <ShortComp
+            key={component.id} // Use a unique identifier (id) as the key
+            comp={comp}
+            setComp={setComp}
+            nofield={component.nofield}
+          />
+        );
+      case 'Long answer':
+        return <LongComp key={component.id} />;
+      case 'Multiple choice':
+        return <MultipleComp key={component.id} />;
+      case 'Checkbox':
+        return <CheckboxComp key={component.id} />;
+      case 'Dropdown':
+        return <Dropdown key={component.id} />;
+      default:
+        return null;
     }
+  };
 
-    const onSelect = (el) => {
-        const selectedType = el.target.value;
-        setComp([...comp, {nofield:nofield, type:selectedType}])
-        setNofield(nofield+1)
-        el.target.value=""
-    }
+  const onSelect = (el) => {
+    const selectedType = el.target.value;
+    setComp([...comp, { nofield, type: selectedType, id: Date.now() }]); // Assign a unique id
+    setNofield(nofield + 1);
+    el.target.value = '';
+  };
 
-    const removeComp = (event,key) => {
-        event.preventDefault();
-        const updatedComp = comp.filter((component, index) => index !== key);
-        setComp(updatedComp);
-    }
+  const removeComp = (event, id) => {
+    event.preventDefault();
+    const updatedComp = comp.filter((component) => component.id !== id);
+    setComp(updatedComp);
+  };
+
 
     const handleFormSubmit = (event) =>{
         event.preventDefault();
@@ -55,27 +60,27 @@ export default function Formbuilder() {
 
 
   return (
-    <div className='container'>
-        <select onChange={onSelect} className='selectBox'>
-            <option></option>
-            <option>Short answer</option>
-            <option>Long answer</option>
-            <option>Checkbox</option>
-            <option>Multiple choice</option>
-            <option>Dropdown</option>
-        </select>
-        <form onSubmit={handleFormSubmit}>
-            {comp.map((component, index) => {
-                // earlier instead of using index, I was using key={component.nofield}
-                 return (<div key={index}>
-                    {renderComp(component, index)}
-                    <button onClick={(event) =>removeComp(event, index)}>Remove</button>
-                    {/* context se global state manage karlo useReducer -> stateManage */}
-                </div>) 
-            })}
-            <button type="submit">Submit</button>
-        </form>
-        <pre>{JSON.stringify(formData, null, 2)}</pre>
+        <div className="container">
+      <select onChange={onSelect} className="selectBox">
+        <option></option>
+        <option>Short answer</option>
+        <option>Long answer</option>
+        <option>Checkbox</option>
+        <option>Multiple choice</option>
+        <option>Dropdown</option>
+      </select>
+      <form onSubmit={handleFormSubmit}>
+        {comp.map((component) => (
+          <div key={component.id}>
+            {renderComp(component)}
+            <button onClick={(event) => removeComp(event, component.id)}>Remove</button>
+          </div>
+         {/* context se global state manage karlo useReducer -> stateManage */}
+                // earlier instead of using index, I was using key={component.nofield}        
+        ))}
+        <button type="submit">Submit</button>
+      </form>
+      <pre>{JSON.stringify(formData, null, 2)}</pre>
     </div>
-  )
+  );
 }
