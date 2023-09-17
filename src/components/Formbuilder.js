@@ -5,12 +5,11 @@ import MultipleComp from './MultipleComp';
 import CheckboxComp from './CheckboxComp';
 import Dropdown from './DropdownComp';
 import '../styles/FormStyle.css';
-
 export default function Formbuilder() {
-  const [nofield, setNofield] = useState(0);
-  const [comp, setComp] = useState([]);
-  const [formData, setFormData] = useState({});
 
+    const [nofield, setNofield] = useState(0);
+    const [comp, setComp] = useState([]); 
+    const [formData, setFormData] = useState({});
   const renderComp = (component, index) => {
     switch (component.type) {
       case 'Short answer':
@@ -48,17 +47,20 @@ export default function Formbuilder() {
     setComp(updatedComp);
   };
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    let generateData = {};
-    comp.forEach((compData) => {
-      generateData[compData.nofield] = { ...compData };
-    });
-    setFormData(generateData);
-  };
+
+    const handleFormSubmit = (event) =>{
+        event.preventDefault();
+        let generateData = {};
+        comp.forEach((compData) =>{
+
+            generateData[compData.nofield] = { ...compData}
+        })
+        setFormData(generateData);
+    }
+
 
   return (
-    <div className="container">
+        <div className="container">
       <select onChange={onSelect} className="selectBox">
         <option></option>
         <option>Short answer</option>
@@ -73,6 +75,8 @@ export default function Formbuilder() {
             {renderComp(component)}
             <button onClick={(event) => removeComp(event, component.id)}>Remove</button>
           </div>
+         {/* context se global state manage karlo useReducer -> stateManage */}
+                // earlier instead of using index, I was using key={component.nofield}        
         ))}
         <button type="submit">Submit</button>
       </form>
