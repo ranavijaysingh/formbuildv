@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ShortComp from './ShortComp';
 import LongComp from './LongComp';
 import MultipleComp from './MultipleComp';
@@ -37,13 +37,10 @@ export default function Formbuilder() {
         el.target.value=""
     }
 
-    const removeComp = (event,index) => {
+    const removeComp = (event,key) => {
         event.preventDefault();
-        console.log(index);
-        const updatedComp = [...comp];
-        updatedComp.splice(index,1);
+        const updatedComp = comp.filter((component, index) => index !== key);
         setComp(updatedComp);
-        console.log(updatedComp)
     }
 
     const handleFormSubmit = (event) =>{
@@ -55,6 +52,7 @@ export default function Formbuilder() {
         })
         setFormData(generateData);
     }
+
 
   return (
     <div className='container'>
