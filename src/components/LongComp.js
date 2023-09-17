@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import '../styles/Long.css';
 
-export default function LongComp({setContent}) {
+export default function LongComp() {
   const [question, setQuestion] = useState('')
 
   const handleChange = (value) => {
     setQuestion(value)
-    setContent({
-      "question":question,
-      "ans":''
-    })
+    
   }
 
 

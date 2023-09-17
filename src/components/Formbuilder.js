@@ -39,9 +39,11 @@ export default function Formbuilder() {
 
     const removeComp = (event,index) => {
         event.preventDefault();
+        console.log(index);
         const updatedComp = [...comp];
         updatedComp.splice(index,1);
         setComp(updatedComp);
+        console.log(updatedComp)
     }
 
     const handleFormSubmit = (event) =>{
