@@ -43,6 +43,8 @@ export default function Formbuilder() {
         updatedComp.splice(index,1);
         setComp(updatedComp);
         console.log(comp)
+        console.log(comp)
+        console.log(comp)
     }
 
   return (
