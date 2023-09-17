@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/short.css';
-export default function ShortComp({comp, setComp, nofield}) {
+export default function ShortComp({comp, setComp, id}) {
   const [question, setQuestion] = useState('')
 
   const handleChange = (e) => {
@@ -10,7 +10,7 @@ export default function ShortComp({comp, setComp, nofield}) {
   useEffect(() =>{
     let cp = comp
     let newcp={"question":question, "ans": ""}
-    cp[nofield] = {...cp[nofield], ...newcp};
+    cp[id] = {...cp[id], ...newcp};
     setComp(cp); 
   },[question])
 

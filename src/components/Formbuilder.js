@@ -7,10 +7,9 @@ import Dropdown from './DropdownComp';
 import '../styles/FormStyle.css';
 export default function Formbuilder() {
 
-    const [nofield, setNofield] = useState(0);
     const [comp, setComp] = useState([]); 
     const [formData, setFormData] = useState({});
-  const renderComp = (component, index) => {
+  const renderComp = (component, id) => {
     switch (component.type) {
       case 'Short answer':
         return (
@@ -18,7 +17,7 @@ export default function Formbuilder() {
             key={component.id} // Use a unique identifier (id) as the key
             comp={comp}
             setComp={setComp}
-            nofield={component.nofield}
+            id={id}
           />
         );
       case 'Long answer':
@@ -36,8 +35,7 @@ export default function Formbuilder() {
 
   const onSelect = (el) => {
     const selectedType = el.target.value;
-    setComp([...comp, { nofield, type: selectedType, id: Date.now() }]); // Assign a unique id
-    setNofield(nofield + 1);
+    setComp([...comp, { id: Date.now(), type: selectedType }]); // Assign a unique id
     el.target.value = '';
   };
 
@@ -53,7 +51,7 @@ export default function Formbuilder() {
         let generateData = {};
         comp.forEach((compData) =>{
 
-            generateData[compData.nofield] = { ...compData}
+            generateData[compData.id] = { ...compData}
         })
         setFormData(generateData);
     }
@@ -72,11 +70,10 @@ export default function Formbuilder() {
       <form onSubmit={handleFormSubmit}>
         {comp.map((component) => (
           <div key={component.id}>
-            {renderComp(component)}
+            {renderComp(component, component.id)}
             <button onClick={(event) => removeComp(event, component.id)}>Remove</button>
           </div>
           // context se global state manage karlo useReducer -> stateManage 
-          // earlier instead of using index, I was using key={component.nofield}        
         ))}
         <button type="submit">Submit</button>
       </form>
