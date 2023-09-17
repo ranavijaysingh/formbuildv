@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ShortComp from './ShortComp';
 import LongComp from './LongComp';
 import MultipleComp from './MultipleComp';
