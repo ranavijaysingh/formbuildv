@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/Checkbox.css';
 
-export default function CheckboxComp() {
+export default function CheckboxComp({comp, setComp, id}) {
   const [question, setQuestion] = useState('');
   const [inputValues, setInputValues] = useState(['']);
 
@@ -10,6 +10,19 @@ export default function CheckboxComp() {
     updatedValues[index] = value;
     setInputValues(updatedValues);
   };
+
+  const handleComponent = () => {
+    const updatedComp = comp;
+    const componentToUpdate = updatedComp.find((component) => component.id === id)
+    componentToUpdate.question = question;
+    componentToUpdate.inputValues = inputValues;
+    setComp(updatedComp);
+  }
+
+  useEffect(() =>{
+    handleComponent();
+ },[question, inputValues])
+
 
   const addInput = (event) => {
     event.preventDefault();
