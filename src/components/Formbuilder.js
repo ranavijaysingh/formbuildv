@@ -20,13 +20,29 @@ export default function Formbuilder() {
           />
         );
       case 'Long answer':
-        return <LongComp key={component.id} />;
+        return <LongComp 
+          comp={comp}
+          setComp={setComp}
+          id={id}
+        />;
       case 'Multiple choice':
-        return <MultipleComp key={component.id} />;
+        return <MultipleComp 
+          comp={comp}
+          setComp={setComp}
+          id={id}
+        />;
       case 'Checkbox':
-        return <CheckboxComp key={component.id} />;
+        return <CheckboxComp 
+          comp={comp}
+          setComp={setComp}
+          id={id}
+        />;
       case 'Dropdown':
-        return <Dropdown key={component.id} />;
+        return <Dropdown 
+          comp={comp}
+          setComp={setComp}
+          id={id}  
+        />;
       default:
         return null;
     }

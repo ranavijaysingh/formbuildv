@@ -7,12 +7,16 @@ export default function ShortComp({comp, setComp, id}) {
     setQuestion(e.target.value)   
   }
 
-  useEffect(() =>{
+  const handleComponent = () => {
     const updatedComp = comp;
     const componentToUpdate = updatedComp.find((component) => component.id === id)
     componentToUpdate.question = question;
     componentToUpdate.ans = "";
-    setComp(updatedComp);     
+    setComp(updatedComp);
+  }
+
+  useEffect(() =>{
+     handleComponent();
   },[question])
 
   return (

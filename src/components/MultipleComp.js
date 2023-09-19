@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/Multiple.css';
 
-export default function MultipleComp() {
+export default function MultipleComp({comp, setComp, id}) {
   const [question, setQuestion] = useState('');
   const [inputValues, setInputValues] = useState(['']);
 
@@ -22,6 +22,18 @@ export default function MultipleComp() {
     updatedValues.splice(index, 1);
     setInputValues(updatedValues);
   };
+
+  const handleComponent = () => {
+    const updatedComp = comp;
+    const componentToUpdate = updatedComp.find((component) => component.id === id)
+    componentToUpdate.question = question;
+    componentToUpdate.inputValues = inputValues;
+    setComp(updatedComp);
+  }
+
+  useEffect(() =>{
+    handleComponent();
+ },[question, inputValues])
 
   return (
     <div className='topShort'>
