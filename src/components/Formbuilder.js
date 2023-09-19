@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ShortComp from './ShortComp';
 import LongComp from './LongComp';
 import MultipleComp from './MultipleComp';
@@ -61,19 +61,44 @@ export default function Formbuilder() {
   };
 
 
-    const handleFormSubmit = (event) =>{
-        event.preventDefault();
-        let generateData = {};
-        comp.forEach((compData) =>{
+  const handleFormSubmit = (event) =>{
+      event.preventDefault();
+      let generateData = {};
+      comp.forEach((compData) =>{
 
-            generateData[compData.id] = { ...compData}
-        })
-        setFormData(generateData);
-    }
+          generateData[compData.id] = { ...compData}
+      })
+      setFormData(generateData);
+  }
 
+  const sendFormDataToBackend = () => {
+    fetch('your-backend-api-url', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); 
+      })
+      .then((data) => {
+        console.log('Data sent successfully:', data);
+      })
+      .catch((error) => {
+        console.error('There was a problem sending the data:', error);
+      });
+  };
+
+  useEffect(() => {
+    sendFormDataToBackend();
+  },[formData])
 
   return (
-        <div className="container">
+    <div className="container">
       <select onChange={onSelect} className="selectBox">
         <option></option>
         <option>Short answer</option>
