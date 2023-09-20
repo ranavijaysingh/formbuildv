@@ -9,6 +9,7 @@ export default function Formbuilder() {
 
   const [comp, setComp] = useState([]); 
   const [formData, setFormData] = useState({});
+  const [formId, setFormId] = useState(null)
   const renderComp = (component, id) => { 
     switch (component.type) {
       case 'Short answer':
@@ -72,7 +73,7 @@ export default function Formbuilder() {
   }
 
   const sendFormDataToBackend = () => {
-    fetch('your-backend-api-url', {
+    fetch(`http://localhost:8000/createForm`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -86,6 +87,7 @@ export default function Formbuilder() {
         return response.json(); 
       })
       .then((data) => {
+        setFormId(data.message)
         console.log('Data sent successfully:', data);
       })
       .catch((error) => {
@@ -94,7 +96,8 @@ export default function Formbuilder() {
   };
 
   useEffect(() => {
-    sendFormDataToBackend();
+    if(Object.keys(formData).length>0)
+      sendFormDataToBackend();
   },[formData])
 
   return (
@@ -117,7 +120,8 @@ export default function Formbuilder() {
         ))}
         <button type="submit">Submit</button>
       </form>
-      <pre>{JSON.stringify(formData, null, 2)}</pre>
+      <p>{JSON.stringify(formData, null, 2)}</p>
+      <p>{formId}</p>
     </div>
   );
 }
