@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ShortComp from './ShortComp';
 import LongComp from './LongComp';
 import MultipleComp from './MultipleComp';
@@ -9,6 +9,7 @@ export default function Formbuilder() {
 
   const [comp, setComp] = useState([]); 
   const [formData, setFormData] = useState({});
+  const [formId, setFormId] = useState(null)
   const renderComp = (component, id) => { 
     switch (component.type) {
       case 'Short answer':
@@ -61,19 +62,46 @@ export default function Formbuilder() {
   };
 
 
-    const handleFormSubmit = (event) =>{
-        event.preventDefault();
-        let generateData = {};
-        comp.forEach((compData) =>{
+  const handleFormSubmit = (event) =>{
+      event.preventDefault();
+      let generateData = {};
+      comp.forEach((compData) =>{
 
-            generateData[compData.id] = { ...compData}
-        })
-        setFormData(generateData);
-    }
+          generateData[compData.id] = { ...compData}
+      })
+      setFormData(generateData);
+  }
 
+  const sendFormDataToBackend = () => {
+    fetch(`http://localhost:8000/createForm`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); 
+      })
+      .then((data) => {
+        setFormId(data.message)
+        console.log('Data sent successfully:', data);
+      })
+      .catch((error) => {
+        console.error('There was a problem sending the data:', error);
+      });
+  };
+
+  useEffect(() => {
+    if(Object.keys(formData).length>0)
+      sendFormDataToBackend();
+  },[formData])
 
   return (
-        <div className="container">
+    <div className="container">
       <select onChange={onSelect} className="selectBox">
         <option></option>
         <option>Short answer</option>
@@ -92,7 +120,8 @@ export default function Formbuilder() {
         ))}
         <button type="submit">Submit</button>
       </form>
-      <pre>{JSON.stringify(formData, null, 2)}</pre>
+      <p>{JSON.stringify(formData, null, 2)}</p>
+      <p>{formId}</p>
     </div>
   );
 }
