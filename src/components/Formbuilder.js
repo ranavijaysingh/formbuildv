@@ -87,7 +87,7 @@ export default function Formbuilder() {
         return response.json(); 
       })
       .then((data) => {
-        setFormId(data.message)
+        setFormId(data)
         console.log('Data sent successfully:', data);
       })
       .catch((error) => {
