@@ -62,11 +62,13 @@ export default function Form() {
             case 'Checkbox':
                 return (
                     <CheckboxComponent
+                        // component = {component}
                     />
                 );
             case 'Dropdown':
                 return (
                     <DropdownComponent
+                        component = {component}
                     />
                 );
             default:
@@ -80,8 +82,6 @@ export default function Form() {
             <p>Loading...</p>
             ) : (
             <div>
-                <h1>Data Received:</h1>
-                <pre>{JSON.stringify(data, null, 2)}</pre>
                 <form>
                     {data.form.map((component) =>(
                         <div key={component._id}>

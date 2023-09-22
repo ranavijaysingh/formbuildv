@@ -8,7 +8,6 @@ export default function MultipleComponent({component}) {
 
   const handleOptionChange= (e) =>{
     setSelectedOption(e.target.value)
-    console.log(selectedOption)
   }
 
   return (
