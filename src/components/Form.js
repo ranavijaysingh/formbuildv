@@ -3,10 +3,13 @@ import DropdownComponent from './DropdownComponent'
 import CheckboxComponent from './CheckboxComponent'
 import ShortComponent from './ShortComponent'
 import LongComponent from './LongComponent'
+import { useParams } from 'react-router'
 import MultipleComponent from './MultipleComponent'
 
 
 export default function Form() {
+
+    const { formid } = useParams();
     const [formId, setFormId] = useState('650cb712b587093104c5504e')
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -16,17 +19,18 @@ export default function Form() {
         multipleChoice: ""
     });
 
-    
     const getData = () =>{
+        
+        setFormId(formid);
         fetch(`http://localhost:8000/forms/${formId}`)
             .then((response) => {
                 if (!response.ok) {
                 throw new Error('Network response was not ok');
                 }
-                return response.json(); // Parse the response body as JSON
+                return response.json(); 
             })
             .then((responseData) => {
-                setData(responseData); // Store the data in state
+                setData(responseData);
                 setLoading(false); // Set loading to false
             })
             .catch((error) => {
