@@ -11,12 +11,16 @@ export default function LongComponent({component}) {
 
   return (
     <div>
-      <label>{question}</label>
+      <div>
+        <label>{question}</label>
+      </div>
         {component.type}
-      <input 
+      <textarea 
         value={answer}
         onChange={(e) => handleChange(e)}
         name='answer'
+        rows="4"
+        cols="50"
         />
     </div>
   )

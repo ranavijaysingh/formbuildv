@@ -11,7 +11,9 @@ export default function DropdownComponent({component}) {
 
   return (
     <div>
-      <label>{question}</label>
+      <div>
+        <label>{question}</label>
+      </div>
       <label>Select an option: </label>
       <select value={selectedOption} onChange={handleSelect}>
       {inputValues.map((option) =>{
