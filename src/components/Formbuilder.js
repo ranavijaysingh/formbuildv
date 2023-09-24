@@ -4,7 +4,7 @@ import LongComp from './LongComp';
 import MultipleComp from './MultipleComp';
 import CheckboxComp from './CheckboxComp';
 import Dropdown from './DropdownComp';
-import DateComp from './dateComp';
+import DateComp from './DateComp';
 import '../styles/FormStyle.css';
 import { NavLink } from 'react-router-dom';
 import 'react-datetime/css/react-datetime.css';
@@ -14,7 +14,6 @@ export default function Formbuilder() {
   const [formId, setFormId] = useState();
   const [comp, setComp] = useState([]); 
   const [formData, setFormData] = useState({});
-
 
   const renderComp = (component, id) => { 
     switch (component.type) {
