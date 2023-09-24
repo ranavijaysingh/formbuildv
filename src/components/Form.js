@@ -1,4 +1,3 @@
-import { Checkbox } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import DropdownComponent from './DropdownComponent'
 import CheckboxComponent from './CheckboxComponent'
@@ -62,7 +61,7 @@ export default function Form() {
             case 'Checkbox':
                 return (
                     <CheckboxComponent
-                        // component = {component}
+                        component = {component}
                     />
                 );
             case 'Dropdown':
@@ -90,6 +89,7 @@ export default function Form() {
                     ))}
                     <button type='Submit'>Submit</button>
                 </form>
+                <p>{JSON.stringify(data, null, 2)}</p>
             </div>
             )}
         </div>
