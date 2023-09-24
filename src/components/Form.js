@@ -93,7 +93,6 @@ export default function Form() {
                     ))}
                     <button type='Submit'>Submit</button>
                 </form>
-                <p>{JSON.stringify(data, null, 2)}</p>
             </div>
             )}
         </div>
