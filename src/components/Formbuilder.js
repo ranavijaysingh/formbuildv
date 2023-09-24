@@ -6,12 +6,16 @@ import CheckboxComp from './CheckboxComp';
 import Dropdown from './DropdownComp';
 import '../styles/FormStyle.css';
 import { NavLink } from 'react-router-dom';
+import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
 
 export default function Formbuilder() {
 
   const [formId, setFormId] = useState();
   const [comp, setComp] = useState([]); 
   const [formData, setFormData] = useState({});
+
+
   const renderComp = (component, id) => { 
     switch (component.type) {
       case 'Short answer':

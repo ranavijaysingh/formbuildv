@@ -11,7 +11,9 @@ export default function ShortComponent({component}) {
 
   return (
     <div>
-      <label>{question}</label>
+      <div>
+        <label>{question}</label>
+      </div>
         {component.type}
       <input 
         value={answer}

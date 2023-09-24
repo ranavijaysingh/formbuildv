@@ -12,7 +12,9 @@ export default function MultipleComponent({component}) {
 
   return (
     <div>
-      <label>{question}</label>
+      <div>
+        <label>{question}</label>
+      </div>
       {inputValues.map((option) =>{
         return(
         <div key={option}>

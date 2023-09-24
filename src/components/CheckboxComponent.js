@@ -27,7 +27,9 @@ export default function CheckboxComponent({component}) {
 
   return (
     <div>
-      <label>{question}</label>
+      <div>
+        <label>{question}</label>
+      </div>
       {checkboxes.map((checkbox) => (
         <label key={checkbox.id}>
           <input

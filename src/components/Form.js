@@ -19,8 +19,7 @@ export default function Form() {
         multipleChoice: ""
     });
 
-    const getData = () =>{
-        
+    const getData = () =>{      
         setFormId(formid);
         fetch(`http://localhost:8000/forms/${formId}`)
             .then((response) => {
