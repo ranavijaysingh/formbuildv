@@ -5,11 +5,13 @@ import MultipleComp from './MultipleComp';
 import CheckboxComp from './CheckboxComp';
 import Dropdown from './DropdownComp';
 import '../styles/FormStyle.css';
+import { NavLink } from 'react-router-dom';
+
 export default function Formbuilder() {
 
+  const [formId, setFormId] = useState();
   const [comp, setComp] = useState([]); 
   const [formData, setFormData] = useState({});
-  const [formId, setFormId] = useState(null)
   const renderComp = (component, id) => { 
     switch (component.type) {
       case 'Short answer':
@@ -88,7 +90,6 @@ export default function Formbuilder() {
       })
       .then((data) => {
         setFormId(data)
-        console.log('Data sent successfully:', data);
       })
       .catch((error) => {
         console.error('There was a problem sending the data:', error);
@@ -120,8 +121,10 @@ export default function Formbuilder() {
         ))}
         <button type="submit">Submit</button>
       </form>
-      <p>{JSON.stringify(formData, null, 2)}</p>
       <p>{formId}</p>
+      <NavLink to={`/form/${formId}`}>
+        form
+      </NavLink>
     </div>
   );
 }

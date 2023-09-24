@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Formbuilder />}/>
-        <Route path='/form' element={<Form />} />
+        <Route path='/form/:formid' element={<Form />} />
       </Routes>      
     </div>
   );
