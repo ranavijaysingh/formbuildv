@@ -4,9 +4,9 @@ import LongComp from './LongComp';
 import MultipleComp from './MultipleComp';
 import CheckboxComp from './CheckboxComp';
 import Dropdown from './DropdownComp';
+import DateComp from './dateComp';
 import '../styles/FormStyle.css';
 import { NavLink } from 'react-router-dom';
-import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 
 export default function Formbuilder() {
@@ -50,6 +50,12 @@ export default function Formbuilder() {
           setComp={setComp}
           id={id}  
         />;
+      case 'Date':
+        return <DateComp
+          comp={comp}
+          setComp={setComp}
+          id={id}
+          />
       default:
         return null;
     }
@@ -114,6 +120,7 @@ export default function Formbuilder() {
         <option>Checkbox</option>
         <option>Multiple choice</option>
         <option>Dropdown</option>
+        <option>Date</option>
       </select>
       <form onSubmit={handleFormSubmit}>
         {comp.map((component) => (
@@ -121,7 +128,7 @@ export default function Formbuilder() {
             {renderComp(component, component.id)}
             <button onClick={(event) => removeComp(event, component.id)}>Remove</button>
           </div>
-          // context se global state manage karlo useReducer -> stateManage 
+          // context se global state manage karlo useReducer -> stateManage
         ))}
         <button type="submit">Submit</button>
       </form>

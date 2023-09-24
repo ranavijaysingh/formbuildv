@@ -5,6 +5,7 @@ import ShortComponent from './ShortComponent'
 import LongComponent from './LongComponent'
 import { useParams } from 'react-router'
 import MultipleComponent from './MultipleComponent'
+import DateComponent from './dateComponent'
 
 
 export default function Form() {
@@ -70,6 +71,12 @@ export default function Form() {
             case 'Dropdown':
                 return (
                     <DropdownComponent
+                        component = {component}
+                    />
+                );
+            case 'Date':
+                return (
+                    <DateComponent
                         component = {component}
                     />
                 );

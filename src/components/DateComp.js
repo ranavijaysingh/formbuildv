@@ -1,31 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 
-
-
-export default function DateComp() {
-
+export default function DateComp({comp, setComp,id}) {
 const [selectedDate, setSelectedDate] = useState(null);
+const [question, setQuestion] = useState('');
 
     const handleDateChange = (moment) => {
         setSelectedDate(moment);
     };
+    const handleComponent = () => {
+        const updatedComp = comp;
+        const componentToUpdate = updatedComp.find((component) => component.id === id)
+        componentToUpdate.question = question;
+        componentToUpdate.datetime = {};
+        setComp(updatedComp);
+    }
+    
+    useEffect(() =>{
+        handleComponent();
+    },[question])
 
     return (
         <div>
-            <h2>Date and Time Saver</h2>
+            <input 
+                placeholder='Question' 
+                value={question} 
+                onChange={(e) => setQuestion(e.target.value)}
+                required
+            />
             <Datetime
-            readOnly
             value={selectedDate}
             onChange={handleDateChange}
             inputProps={{ placeholder: 'Select Date and Time' }}
             />
-            <div>
-            <p>
-                Selected Date and Time:{' '}
-                {selectedDate ? selectedDate.format('MMMM Do YYYY, h:mm a') : 'Not selected'}
-            </p>
-            </div>
         </div>
 )}
