@@ -14,11 +14,7 @@ export default function Form() {
     const [formId, setFormId] = useState('650cb712b587093104c5504e')
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [formData, setFormData] = useState({
-        textInput:"",
-        dropdown:"",
-        multipleChoice: ""
-    });
+
 
     const getData = () =>{      
         setFormId(formid);
@@ -91,9 +87,9 @@ export default function Form() {
             <p>Loading...</p>
             ) : (
             <div>
-                <form>
+                <form className="formcontainer">
                     {data.form.map((component) =>(
-                        <div key={component._id}>
+                        <div key={component._id} className='inputcontainerdiv'>
                             {renderComp(component)}
                         </div>
                     ))}

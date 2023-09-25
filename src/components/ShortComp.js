@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import '../styles/short.css';
 export default function ShortComp({comp, setComp, id}) {
   const [question, setQuestion] = useState('')
 
