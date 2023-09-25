@@ -14,7 +14,6 @@ export default function LongComponent({component}) {
       <div>
         <label>{question}</label>
       </div>
-        {component.type}
       <textarea 
         value={answer}
         onChange={(e) => handleChange(e)}

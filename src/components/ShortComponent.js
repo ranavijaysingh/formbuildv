@@ -14,7 +14,6 @@ export default function ShortComponent({component}) {
       <div>
         <label>{question}</label>
       </div>
-        {component.type}
       <input 
         value={answer}
         onChange={(e) => handleChange(e)}

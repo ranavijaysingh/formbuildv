@@ -17,7 +17,7 @@ export default function Formbuilder() {
 
   const renderComp = (component, id) => { 
     switch (component.type) {
-      case 'Short answer':
+      case 'Inputbox':
         return (
           <ShortComp
             comp={comp}
@@ -25,7 +25,7 @@ export default function Formbuilder() {
             id={id}
           />
         );
-      case 'Long answer':
+      case 'Textbox':
         return <LongComp 
           comp={comp}
           setComp={setComp}
@@ -114,8 +114,8 @@ export default function Formbuilder() {
     <div className="container">
       <select onChange={onSelect} className="selectBox">
         <option></option>
-        <option>Short answer</option>
-        <option>Long answer</option>
+        <option>Inputbox</option>
+        <option>Textbox</option>
         <option>Checkbox</option>
         <option>Multiple choice</option>
         <option>Dropdown</option>
@@ -132,9 +132,9 @@ export default function Formbuilder() {
         <button type="submit">Submit</button>
       </form>
       <p>{formId}</p>
-      <NavLink to={`/form/${formId}`}>
+      {formId && <NavLink to={`/form/${formId}`}>
         form
-      </NavLink>
+      </NavLink>}
     </div>
   );
 }
