@@ -72,6 +72,13 @@ export default function Formbuilder() {
     setComp(updatedComp);
   };
 
+  const copyComp = (event, id) => {
+    event.preventDefault();
+    const updatedComp = comp.find((component) => component.id === id);
+    const newComp = { ...updatedComp, id: Date.now(), question: updatedComp.question};
+    setComp([...comp, newComp]);
+    console.log(comp)
+  }
 
   const handleFormSubmit = (event) =>{
       event.preventDefault();
@@ -126,6 +133,7 @@ export default function Formbuilder() {
           <div key={component.id}>
             {renderComp(component, component.id)}
             <button onClick={(event) => removeComp(event, component.id)}>Remove</button>
+            <button onClick={(event) => copyComp(event, component.id)}>Copy</button>
           </div>
           // context se global state manage karlo useReducer -> stateManage
         ))}
