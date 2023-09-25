@@ -8,6 +8,7 @@ import DateComp from './DateComp';
 import '../styles/FormStyle.css';
 import { NavLink } from 'react-router-dom';
 import 'react-datetime/css/react-datetime.css';
+import FileUploadComp from './fileUploadComp';
 
 export default function Formbuilder() {
 
@@ -135,6 +136,7 @@ export default function Formbuilder() {
       <NavLink to={`/form/${formId}`}>
         form
       </NavLink>
+      <FileUploadComp />
     </div>
   );
 }
