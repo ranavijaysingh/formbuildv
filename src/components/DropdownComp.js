@@ -40,7 +40,6 @@ export default function DropdownComp({comp, setComp, id}) {
         placeholder='Question' 
         value={question} 
         onChange={(e) => setQuestion(e.target.value)}
-        required
       />
       <div>
         <ol>

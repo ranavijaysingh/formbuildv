@@ -40,7 +40,6 @@ export default function MultipleComp({comp, setComp, id}) {
         placeholder='Question' 
         value={question} 
         onChange={(e) => setQuestion(e.target.value)}
-        required
       />
       <div>
         {inputValues.map((value, index) => (

@@ -27,7 +27,6 @@ const [question, setQuestion] = useState('');
                 placeholder='Question' 
                 value={question} 
                 onChange={(e) => setQuestion(e.target.value)}
-                required
             />
             <Datetime
             value={selectedDate}

@@ -40,13 +40,13 @@ export default function Form() {
 
     const renderComp = (component) =>{
         switch(component.type) {
-            case 'Short answer':
+            case 'Inputbox':
                 return (
                     <ShortComponent
                         component = {component}
                     />
                     );
-            case 'Long answer':
+            case 'Textbox':
                 return (
                     <LongComponent
                         component = {component}
