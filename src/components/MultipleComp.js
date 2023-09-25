@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import '../styles/Multiple.css';
 
 export default function MultipleComp({comp, setComp, id}) {
   const [question, setQuestion] = useState('');

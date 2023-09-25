@@ -1,5 +1,5 @@
 .container{
-    max-width: 500px;
+    max-width: 700px;
     margin: 0 auto;
 }
 .selectBox{
@@ -10,3 +10,42 @@
     display: inline-flex;
     justify-content: center;
 }
+.topShort{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.smallBoxMulti {
+    border: 2px solid grey;
+    border-radius: 25px;
+    width: 10px; 
+    height: 10px; 
+    margin-right: 10px; 
+}
+.inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .smallBox {
+    border: 2px solid grey;
+    width: 10px; 
+    height: 10px; 
+    margin-right: 10px; 
+  }
+  .inputField {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .formcontainer {
+    width: 60%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the form horizontally */
+  }
+
+  .inputcontainerdiv {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }

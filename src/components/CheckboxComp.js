@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import '../styles/Checkbox.css';
 
 export default function CheckboxComp({comp, setComp, id}) {
   const [question, setQuestion] = useState('');
