@@ -11,13 +11,12 @@ import DateComponent from './dateComponent'
 export default function Form() {
 
     const { formid } = useParams();
-    const [formId, setFormId] = useState('6511cd866e126dae291ebcf4')
+    const [formId, setFormId] = useState(formid)
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
 
     const getData = () =>{      
-        setFormId(formid);
         fetch(`http://localhost:8000/forms/${formId}`)
             .then((response) => {
                 if (!response.ok) {
@@ -27,16 +26,16 @@ export default function Form() {
             })
             .then((responseData) => {
                 setData(responseData);
-                setLoading(false); // Set loading to false
+                setLoading(false); 
             })
             .catch((error) => {
                 console.error('There was a problem fetching the data:', error);
-                setLoading(false); // Set loading to false even on error
+                setLoading(false); 
             });
     }
     useEffect(() =>{
         getData();
-    },[data])
+    },[data]) // formId can be used instead of data
 
     const renderComp = (component) =>{
         switch(component.type) {
@@ -88,12 +87,15 @@ export default function Form() {
             ) : (
             <div>
                 <form className="formcontainer">
-                    {data.form.map((component) =>(
-                        <div key={component._id} className='inputcontainerdiv'>
-                            {renderComp(component)}
-                        </div>
-                    ))}
-                    <button type='Submit'>Submit</button>
+                    {data && data.form ?
+                        (data.form.map((component) =>(
+                            <div key={component._id} className='inputcontainerdiv'>
+                                {renderComp(component)}
+                            </div>))
+                            )
+                            : ''
+                    }
+                    {data && data.form && <button type='Submit'>Submit</button>}
                 </form>
             </div>
             )}
