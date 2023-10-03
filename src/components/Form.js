@@ -14,7 +14,12 @@ export default function Form() {
     const [formId, setFormId] = useState(formid)
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isSubmit, setIsSubmit] = useState(false);
 
+    const handleFormSubmit = (event) =>{
+        event.preventDefault();
+        setIsSubmit(true);
+    }
 
     const getData = () =>{      
         fetch(`http://localhost:8000/forms/${formId}`)
@@ -86,7 +91,7 @@ export default function Form() {
             <p>Loading...</p>
             ) : (
             <div>
-                <form className="formcontainer">
+                <form className="formcontainer"  onSubmit={handleFormSubmit}>
                     {data && data.form ?
                         (data.form.map((component) =>(
                             <div key={component._id} className='inputcontainerdiv'>
@@ -99,6 +104,7 @@ export default function Form() {
                 </form>
             </div>
             )}
+            {isSubmit ? <p>Data Submitted</p>: ''}
         </div>
     )
 }
